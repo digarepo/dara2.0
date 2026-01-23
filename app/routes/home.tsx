@@ -1,3 +1,4 @@
+import { Button } from "~/components/ui/button";
 import type { Route } from "./+types/home";
 import { Welcome } from "../welcome/welcome";
 
@@ -13,5 +14,10 @@ export function loader({ context }: Route.LoaderArgs) {
 }
 
 export default function Home({ loaderData }: Route.ComponentProps) {
-  return <Welcome message={loaderData.message} />;
+  return (
+    <div>
+      <Welcome message={loaderData.message} />
+      <h1 className="text-3xl font-bold underline">Welcome to Dara2.0</h1>
+    </div>
+  );
 }
