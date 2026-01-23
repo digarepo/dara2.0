@@ -1,26 +1,31 @@
 {
   "compilerOptions": {
-    "target": "ES2020",
-    "useDefineForClassFields": true,
-    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "target": "ES2022",
+    "lib": ["DOM", "DOM.Iterable", "ES2022"],
     "module": "ESNext",
-    "skipLibCheck": true,
     "moduleResolution": "bundler",
-    "allowImportingTsExtensions": true,
-    "isolatedModules": true,
-    "moduleDetection": "force",
-    "noEmit": true,
+
     "jsx": "react-jsx",
+
     "strict": true,
-    "checkJs": true,
+    "noImplicitAny": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
+
+    "useDefineForClassFields": true,
+    "isolatedModules": true,
+    "moduleDetection": "force",
+    "noEmit": true,
+    "skipLibCheck": true,
+
     "baseUrl": ".",
     "paths": {
-      "~/*": ["./*"]
-    }
+      "~/*": ["./app/*"]
+    },
+
+    "types": ["vite/client"]
   },
-  "include": ["."],
+  "include": ["app", "server", ".react-router/types"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
