@@ -6,15 +6,7 @@ import {
   ScrollRestoration,
 } from "react-router";
 
-export function meta() {
-  return [
-    { title: "My App" },
-    { charSet: "utf-8" },
-    { name: "viewport", content: "width=device-width, initial-scale=1" },
-  ];
-}
-
-export default function RootLayout() {
+export default function Root() {
   return (
     <html lang="en">
       <head>
