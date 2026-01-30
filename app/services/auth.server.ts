@@ -1,26 +1,23 @@
 import bcrypt from "bcryptjs";
 import { redirect } from "react-router";
 import { getSession } from "~/utils/sessions.server";
-import { Role } from "~/constants/roles"; // ✅ ONLY what we use
+import { Role } from "~/constants/roles";
 
-/* ======================================================
-   PASSWORD HELPERS
-====================================================== */
+/* ===========================
+   PASSWORD
+=========================== */
 
-export async function hashPassword(password: string): Promise<string> {
+export async function hashPassword(password: string) {
   return bcrypt.hash(password, 10);
 }
 
-export async function verifyPassword(
-  password: string,
-  passwordHash: string
-): Promise<boolean> {
-  return bcrypt.compare(password, passwordHash);
+export async function verifyPassword(password: string, hash: string) {
+  return bcrypt.compare(password, hash);
 }
 
-/* ======================================================
-   AUTHENTICATION
-====================================================== */
+/* ===========================
+   AUTH (Login required)
+=========================== */
 
 export type SessionUser = {
   id: number;
@@ -39,9 +36,9 @@ export async function requireUser(request: Request): Promise<SessionUser> {
   return user as SessionUser;
 }
 
-/* ======================================================
-   AUTHORIZATION (RBAC)
-====================================================== */
+/* ===========================
+   RBAC (Role-based access)
+=========================== */
 
 export async function requireRole(
   request: Request,
