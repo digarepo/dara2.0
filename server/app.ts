@@ -1,22 +1,31 @@
-import "react-router";
-import { createRequestHandler } from "@react-router/express";
 import express from "express";
 
-declare module "react-router" {
-  interface AppLoadContext {
-    VALUE_FROM_EXPRESS: string;
-  }
-}
+import cookieParser from "cookie-parser";
+import { requireAuth } from "./auth.middleware";
 
-export const app = express();
+const app = express();
 
-app.use(
-  createRequestHandler({
-    build: () => import("virtual:react-router/server-build"),
-    getLoadContext() {
-      return {
-        VALUE_FROM_EXPRESS: "Hello from Express",
-      };
-    },
-  }),
+// Middleware
+app.use(express.json());
+app.use(cookieParser());
+
+// Public route
+app.get("/", (req, res) => {
+  console.log("Request method:", req.method);
+  console.log("Request headers:", req.headers);
+  res.send("Backend is running! two");
+});
+export { app };
+
+// Protected admin route
+app.get("/admin/users", requireAuth(["ADMIN"]), async (req, res) => {
+   console.log("Request method:", req.method);
+  console.log("Request headers:", req.headers);
+  res.json({ message: "Only admins can see this" });
+});
+
+// Server start
+const PORT = 3000;
+app.listen(PORT, () =>
+  console.log(`Server running at http://localhost:${PORT}`)
 );
