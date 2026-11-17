@@ -8,6 +8,7 @@
     "module": "ESNext",
     "moduleResolution": "bundler",
     "jsx": "react-jsx",
+    "verbatimModuleSyntax": true,
 
     /* Strictness */
     "strict": true,
@@ -22,10 +23,12 @@
     "moduleDetection": "force",
     "noEmit": true,
     "skipLibCheck": true,
+    "checkJs": true,
 
     /* Path aliases */
     "paths": {
-      "~/*": ["./app/*"]
+      "~/*": ["./app/*"],
+      "@/*": ["./app/*"]
     },
 
     /* Types */

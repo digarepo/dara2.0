@@ -1,15 +1,15 @@
-import { createBrowserRouter, RouterProvider } from "react-router";
-import LoginPage, { action as loginAction } from "~/routes/login";
-import DashboardPage from "~/routes/dashboard";
+import { createBrowserRouter, RouterProvider } from 'react-router';
+import LoginPage, { action as loginAction } from '~/routes/login';
+import DashboardPage from '~/routes/dashboard';
 
 const router = createBrowserRouter([
   {
-    path: "/login",
+    path: '/login',
     element: <LoginPage />,
     action: loginAction, // connects the POST form submission to the API
   },
   {
-    path: "/dashboard",
+    path: '/dashboard',
     element: <DashboardPage />,
   },
 ]);
@@ -17,4 +17,3 @@ const router = createBrowserRouter([
 export default function App() {
   return <RouterProvider router={router} />;
 }
-
