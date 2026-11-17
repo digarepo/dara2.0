@@ -1,23 +1,10 @@
-import { Button } from "~/components/ui/button";
-import type { Route } from "./+types/home";
-import { Welcome } from "../welcome/welcome";
-
-export function meta({}: Route.MetaArgs) {
-  return [
-    { title: "New React Router App" },
-    { name: "description", content: "Welcome to React Router!" },
-  ];
-}
-
-export function loader({ context }: Route.LoaderArgs) {
-  return { message: context.VALUE_FROM_EXPRESS };
-}
-
-export default function Home({ loaderData }: Route.ComponentProps) {
+export default function Home() {
   return (
-    <div>
-      <Welcome message={loaderData.message} />
-      <h1 className="text-3xl font-bold underline">Welcome to Dara2.0</h1>
+    <div className="p-8">
+      <h1 className="text-3xl font-bold">Welcome to Dara2.0</h1>
+      <p className="mt-4">
+        This is the home page of our media company website.
+      </p>
     </div>
   );
 }

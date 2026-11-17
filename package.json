@@ -3,9 +3,9 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "postinstall": "mkdir -p media/images media/videos media/thumbnails media/documents media/audio media/other",
+    "postinstall": "node -e \"['media/images','media/videos','media/thumbnails','media/documents','media/audio','media/other'].forEach(d=>require('fs').mkdirSync(d,{recursive:true}))\"",
     "build": "react-router build",
-    "dev": "cross-env NODE_ENV=development node server.js",
+    "dev": "react-router dev",
     "start": "node server.js",
     "typecheck": "react-router typegen && tsc -b --noEmit",
     "lint": "eslint . --ext .js,.ts,.tsx",

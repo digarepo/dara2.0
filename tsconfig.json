@@ -24,21 +24,15 @@
     "skipLibCheck": true,
 
     /* Path aliases */
-    "baseUrl": ".",
     "paths": {
       "~/*": ["./app/*"]
     },
 
     /* Types */
-    "types": ["vite/client"]
+    "types": ["vite/client", "node"]
   },
 
-  "include": [
-    "app",
-    "server",
-    ".react-router/types",
-    "react-router-env.d.ts"
-  ],
+  "include": ["app", ".react-router/types", "react-router-env.d.ts"],
 
   "references": [{ "path": "./tsconfig.node.json" }]
 }
