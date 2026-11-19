@@ -1,4 +1,6 @@
 // app/config/env.ts
+/// <reference types="node" />
+
 import { z } from 'zod';
 
 const envSchema = z.object({
