@@ -14,9 +14,42 @@ const sessionStorage = createCookieSessionStorage({
   },
 });
 
-// ይህ ተግባር Request ን ይቀበላል
+export async function createSession(
+  request: Request,
+  userId: number,
+  roleId: number,
+) {
+  const session = await sessionStorage.getSession(
+    request.headers.get('Cookie'),
+  );
+  session.set('userId', userId);
+  session.set('roleId', roleId);
+
+  return redirect('/admin', {
+    headers: {
+      'Set-Cookie': await sessionStorage.commitSession(session),
+    },
+  });
+}
+
 export async function getSession(request: Request) {
   return sessionStorage.getSession(request.headers.get('Cookie'));
 }
 
-// ... ሌሎች ተግባራት (createSession, requireUserId, destroySession) እንዳሉ ይቆዩ
+export async function requireUserId(request: Request) {
+  const session = await getSession(request);
+  const userId = session.get('userId');
+  if (!userId) {
+    throw redirect('/login');
+  }
+  return userId;
+}
+
+export async function destroySession(request: Request) {
+  const session = await getSession(request);
+  return redirect('/', {
+    headers: {
+      'Set-Cookie': await sessionStorage.destroySession(session),
+    },
+  });
+}
