@@ -1,5 +1,5 @@
 // app/routes/api/login.ts
-import { type ActionFunctionArgs, json } from 'react-router';
+import { type ActionFunctionArgs } from 'react-router';
 import { queryOne } from '~/db';
 import { verifyPassword } from '~/utils/password.server';
 import { createSession } from '~/utils/session.server';
@@ -10,13 +10,15 @@ export async function action({ request }: ActionFunctionArgs) {
   const password = formData.get('password') as string;
 
   if (!username || !password) {
-    return json(
-      { error: 'Username and password are required' },
-      { status: 400 },
+    return new Response(
+      JSON.stringify({ error: 'Username and password are required' }),
+      {
+        status: 400,
+        headers: { 'Content-Type': 'application/json' },
+      },
     );
   }
 
-  // Find user by username
   const user = await queryOne<{
     id: number;
     username: string;
@@ -28,14 +30,19 @@ export async function action({ request }: ActionFunctionArgs) {
   );
 
   if (!user) {
-    return json({ error: 'Invalid credentials' }, { status: 401 });
+    return new Response(JSON.stringify({ error: 'Invalid credentials' }), {
+      status: 401,
+      headers: { 'Content-Type': 'application/json' },
+    });
   }
 
   const isValid = await verifyPassword(password, user.password_hash);
   if (!isValid) {
-    return json({ error: 'Invalid credentials' }, { status: 401 });
+    return new Response(JSON.stringify({ error: 'Invalid credentials' }), {
+      status: 401,
+      headers: { 'Content-Type': 'application/json' },
+    });
   }
 
-  // Create session
   return createSession(request, user.id, user.role_id);
 }
