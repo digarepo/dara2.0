@@ -1,22 +1,12 @@
-import { Request, Response, NextFunction } from "express";
-import jwt from "jsonwebtoken";
+// app/middleware/auth.server.ts
+import { redirect } from 'react-router';
+import { getSession } from '~/utils/session.server';
 
-const JWT_SECRET = "YOUR_SECRET_KEY";
-
-export const requireAuth = (roles: string[] = []) => {
-  return (req: Request, res: Response, next: NextFunction) => {
-    const token = req.cookies.session;
-    if (!token) return res.status(401).json({ message: "Unauthorized" });
-
-    try {
-      const payload: any = jwt.verify(token, JWT_SECRET);
-      if (roles.length && !roles.includes(payload.roleId)) {
-        return res.status(403).json({ message: "Forbidden" });
-      }
-      (req as any).user = payload;
-      next();
-    } catch {
-      return res.status(401).json({ message: "Invalid session" });
-    }
-  };
-};
+export async function requireAuth(request: Request) {
+  const session = await getSession(request);
+  const userId = session.get('userId');
+  if (!userId) {
+    throw redirect('/login');
+  }
+  return { userId: userId as number, roleId: session.get('roleId') as number };
+}
