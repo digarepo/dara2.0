@@ -1,13 +1,8 @@
-import { Link } from 'react-router';
-import { Button } from '~/components/ui/button';
-
 export default function About() {
   return (
-    <p>
-      This is about page.
-      <Button variant={'secondary'} size={'xs'}>
-        <Link to={'/'}>Home</Link>
-      </Button>
-    </p>
+    <div className="p-8">
+      <h1 className="text-3xl font-bold">About Us</h1>
+      <p className="mt-4">Learn more about our media company.</p>
+    </div>
   );
 }
