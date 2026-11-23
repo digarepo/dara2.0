@@ -35,6 +35,14 @@ export default function Sidebar() {
             Manage Users
           </Link>
         </li>
+        <li>
+          <Link
+            to="/admin/media"
+            className="block p-2 hover:bg-gray-200 rounded"
+          >
+            Media Library
+          </Link>
+        </li>
       </ul>
     </aside>
   );
