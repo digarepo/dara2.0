@@ -6,14 +6,14 @@ import {
 } from '@react-router/dev/routes';
 
 export default [
-  layout('components/layouts/MainLayout.tsx', [
+  layout('components/layout/MainLayout.tsx', [
     index('routes/home.tsx'),
     route('about', 'routes/about.tsx'),
     route('blog', 'routes/blog.tsx'),
     route('portfolio', 'routes/portfolio.tsx'),
     route('login', 'routes/login.tsx'),
   ]),
-  layout('components/layouts/AdminLayout.tsx', [
+  layout('components/layout/AdminLayout.tsx', [
     route('admin', 'routes/admin/dashboard.tsx'),
     route('admin/blogs', 'routes/admin/blogs.tsx'),
     route('admin/portfolio', 'routes/admin/portfolio.tsx'),
