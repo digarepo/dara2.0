@@ -2,6 +2,8 @@
 import { type LoaderFunctionArgs, type ActionFunctionArgs } from 'react-router';
 import { requireAuth } from '~/middleware/auth.server';
 import { query } from '~/db';
+import RichTextEditor from '~/components/editor/RichTextEditor';
+import { useState } from 'react';
 
 export async function loader({ request }: LoaderFunctionArgs) {
   await requireAuth(request);
@@ -29,10 +31,12 @@ export async function action({ request }: ActionFunctionArgs) {
 }
 
 export default function AdminBlogs() {
+  const [content, setContent] = useState('');
+
   return (
     <div className="p-8">
       <h1 className="text-3xl font-bold mb-6">Manage Blogs</h1>
-      <p>Blog CRUD implementation will go here.</p>
+      <RichTextEditor content={content} onChange={setContent} />
     </div>
   );
 }
