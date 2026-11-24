@@ -1,3 +1,15 @@
+import type { MetaFunction } from 'react-router';
+
+export const meta: MetaFunction = () => {
+  return [
+    { title: 'Dara 2.0 - Home' },
+    {
+      name: 'description',
+      content: 'Welcome to Dara 2.0, your gateway to amazing media content.',
+    },
+  ];
+};
+
 export default function Home() {
   return (
     <div className="p-8">

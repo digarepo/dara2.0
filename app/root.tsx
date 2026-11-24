@@ -1,10 +1,22 @@
+// app/root.tsx
 import { Links, Meta, Outlet, Scripts, ScrollRestoration } from 'react-router';
-import type { LinksFunction } from 'react-router';
+import type { LinksFunction, MetaFunction } from 'react-router';
 import stylesheet from './app.css?url';
 
 export const links: LinksFunction = () => [
   { rel: 'stylesheet', href: stylesheet },
 ];
+
+export const meta: MetaFunction = () => {
+  return [
+    { title: 'Dara 2.0 - Media Company' },
+    {
+      name: 'description',
+      content:
+        'Dara 2.0 is a leading media company offering video production, photography, and digital marketing services.',
+    },
+  ];
+};
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
@@ -16,7 +28,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body>
-        {children}
+        {children} {/* Header እና Footer በMainLayout ውስጥ ስለሚገኙ እዚህ አያስፈልጉም */}
         <ScrollRestoration />
         <Scripts />
       </body>

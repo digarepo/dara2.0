@@ -1,4 +1,16 @@
-// app/routes/services.tsx
+import type { MetaFunction } from 'react-router';
+
+export const meta: MetaFunction = () => {
+  return [
+    { title: 'Our Services - Dara 2.0' },
+    {
+      name: 'description',
+      content:
+        'Explore our wide range of media services including video production, photography, and digital marketing.',
+    },
+  ];
+};
+
 export default function Services() {
   const services = [
     {

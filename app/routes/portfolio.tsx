@@ -1,4 +1,15 @@
-// app/routes/portfolio.tsx
+import type { MetaFunction } from 'react-router';
+
+export const meta: MetaFunction = () => {
+  return [
+    { title: 'Our Portfolio - Dara 2.0' },
+    {
+      name: 'description',
+      content: 'Check out some of our recent projects and works.',
+    },
+  ];
+};
+
 export default function Portfolio() {
   const projects = [
     {
