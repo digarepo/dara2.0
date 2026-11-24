@@ -26,7 +26,7 @@ export type SessionUser = {
 };
 
 export async function requireUser(request: Request): Promise<SessionUser> {
-  const session = await getSession(request.headers.get('Cookie'));
+  const session = await getSession(request);
   const user = session.get('user');
 
   if (!user) {

@@ -7,7 +7,7 @@
     "build": "react-router build",
     "dev": "react-router dev",
     "start": "node server.js",
-    "typecheck": "react-router typegen && tsc -b --noEmit",
+    "typecheck": "react-router typegen && tsc --noEmit",
     "lint": "eslint . --ext .js,.ts,.tsx",
     "lint:fix": "eslint . --ext .ts,.tsx --fix"
   },

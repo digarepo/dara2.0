@@ -5,7 +5,8 @@ export function hasPermission(
   role: keyof typeof RolePermissions,
   permission: Permission
 ): boolean {
-  return RolePermissions[role]?.includes(permission);
+  const allowed = RolePermissions[role] as readonly Permission[] | undefined;
+  return allowed ? allowed.includes(permission) : false;
 }
 
 export function requirePermission(

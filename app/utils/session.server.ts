@@ -32,8 +32,12 @@ export async function createSession(
   });
 }
 
-export async function getSession(request: Request) {
-  return sessionStorage.getSession(request.headers.get('Cookie'));
+export async function getSession(requestOrCookie: Request | string | null) {
+  const cookie =
+    typeof requestOrCookie === 'string' || requestOrCookie === null
+      ? requestOrCookie
+      : requestOrCookie?.headers?.get('Cookie');
+  return sessionStorage.getSession(cookie);
 }
 
 export async function requireUserId(request: Request) {

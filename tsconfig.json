@@ -26,6 +26,7 @@
     "checkJs": true,
 
     /* Path aliases */
+    "rootDirs": [".", "./.react-router/types"],
     "paths": {
       "~/*": ["./app/*"],
       "@/*": ["./app/*"]
@@ -35,7 +36,11 @@
     "types": ["vite/client", "node"]
   },
 
-  "include": ["app", ".react-router/types", "react-router-env.d.ts"],
-
-  "references": [{ "path": "./tsconfig.node.json" }]
+  "include": [
+    "app",
+    ".react-router/types",
+    "react-router-env.d.ts",
+    "vite.config.ts",
+    "react-router.config.ts"
+  ]
 }

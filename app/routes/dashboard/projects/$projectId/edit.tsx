@@ -1,13 +1,17 @@
-export async function loader({ request, params }) {
-  // Auth + RBAC
-  // Fetch project
+import type { LoaderFunctionArgs, ActionFunctionArgs } from "react-router";
+
+export async function loader({ request: _request, params: _params }: LoaderFunctionArgs) {
+  return null;
 }
 
-export async function action({ request, params }) {
-  // Validate
-  // Update project in DB
+export async function action({ request: _request, params: _params }: ActionFunctionArgs) {
+  return null;
 }
 
 export default function EditProjectPage() {
-  // shadcn/ui form
+  return (
+    <div className="p-4">
+      <h1>Edit Project</h1>
+    </div>
+  );
 }
