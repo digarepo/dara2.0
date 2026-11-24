@@ -14,8 +14,7 @@ export default function Header() {
         </Link>
         <Link to="/services" className="hover:underline">
           Services
-        </Link>{' '}
-        {/* <-- ይህ መኖር አለበት */}
+        </Link>
         <Link to="/blog" className="hover:underline">
           Blog
         </Link>
