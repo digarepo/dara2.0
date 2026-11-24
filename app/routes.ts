@@ -9,6 +9,7 @@ export default [
   layout('components/layout/MainLayout.tsx', [
     index('routes/home.tsx'),
     route('about', 'routes/about.tsx'),
+    route('services', 'routes/services.tsx'), // <-- ይህ መኖር አለበት
     route('blog', 'routes/blog.tsx'),
     route('portfolio', 'routes/portfolio.tsx'),
     route('login', 'routes/login.tsx'),
@@ -18,6 +19,7 @@ export default [
     route('admin/blogs', 'routes/admin/blogs.tsx'),
     route('admin/portfolio', 'routes/admin/portfolio.tsx'),
     route('admin/users', 'routes/admin/users.tsx'),
+    route('admin/media', 'routes/admin/media.tsx'),
     route('admin/roles', 'routes/admin/roles.tsx'),
     route('admin/permissions', 'routes/admin/permissions.tsx'),
     route('admin/settings', 'routes/admin/settings.tsx'),
