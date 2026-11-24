@@ -9,7 +9,7 @@ export default [
   layout('components/layout/MainLayout.tsx', [
     index('routes/home.tsx'),
     route('about', 'routes/about.tsx'),
-    route('services', 'routes/services.tsx'), // <-- ይህ መኖር አለበት
+    route('services', 'routes/services.tsx'),
     route('blog', 'routes/blog.tsx'),
     route('portfolio', 'routes/portfolio.tsx'),
     route('login', 'routes/login.tsx'),
