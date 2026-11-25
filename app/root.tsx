@@ -1,27 +1,22 @@
-import {
-  isRouteErrorResponse,
-  Links,
-  Meta,
-  Outlet,
-  Scripts,
-  ScrollRestoration,
-} from 'react-router';
+// app/root.tsx
+import { Links, Meta, Outlet, Scripts, ScrollRestoration } from 'react-router';
+import type { LinksFunction, MetaFunction } from 'react-router';
+import stylesheet from './app.css?url';
 
-import type { Route } from './+types/root';
-import './app.css';
-
-export const links: Route.LinksFunction = () => [
-  { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
-  {
-    rel: 'preconnect',
-    href: 'https://fonts.gstatic.com',
-    crossOrigin: 'anonymous',
-  },
-  {
-    rel: 'stylesheet',
-    href: 'https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap',
-  },
+export const links: LinksFunction = () => [
+  { rel: 'stylesheet', href: stylesheet },
 ];
+
+export const meta: MetaFunction = () => {
+  return [
+    { title: 'Dara 2.0 - Media Company' },
+    {
+      name: 'description',
+      content:
+        'Dara 2.0 is a leading media company offering video production, photography, and digital marketing services.',
+    },
+  ];
+};
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
@@ -32,8 +27,8 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Meta />
         <Links />
       </head>
-      <body className="container mx-auto py-20">
-        {children}
+      <body>
+        {children} {/* Header እና Footer በMainLayout ውስጥ ስለሚገኙ እዚህ አያስፈልጉም */}
         <ScrollRestoration />
         <Scripts />
       </body>
@@ -43,33 +38,4 @@ export function Layout({ children }: { children: React.ReactNode }) {
 
 export default function App() {
   return <Outlet />;
-}
-
-export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
-  let message = 'Oops!';
-  let details = 'An unexpected error occurred.';
-  let stack: string | undefined;
-
-  if (isRouteErrorResponse(error)) {
-    message = error.status === 404 ? '404' : 'Error';
-    details =
-      error.status === 404
-        ? 'The requested page could not be found.'
-        : error.statusText || details;
-  } else if (import.meta.env.DEV && error && error instanceof Error) {
-    details = error.message;
-    stack = error.stack;
-  }
-
-  return (
-    <main className="pt-16 p-4 container mx-auto">
-      <h1>{message}</h1>
-      <p>{details}</p>
-      {stack && (
-        <pre className="w-full p-4 overflow-x-auto">
-          <code>{stack}</code>
-        </pre>
-      )}
-    </main>
-  );
 }
